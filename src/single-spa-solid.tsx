@@ -1,15 +1,15 @@
 const defaultOpts = {
   // required opts
-  preact: null,
+  solid: null,
   rootComponent: null,
 
   // optional opts
   domElementGetter: null,
 };
 
-export default function singleSpaPreact(userOpts) {
+export default function singleSpaSolid(userOpts:any) {
   if (typeof userOpts !== "object") {
-    throw new Error(`single-spa-preact requires a configuration object`);
+    throw new Error(`single-spa-solid requires a configuration object`);
   }
 
   const opts = {
@@ -17,12 +17,12 @@ export default function singleSpaPreact(userOpts) {
     ...userOpts,
   };
 
-  if (!opts.preact) {
-    throw new Error(`single-spa-preact must be passed opts.preact`);
+  if (!opts.solid) {
+    throw new Error(`single-spa-solid must be passed opts.solid`);
   }
 
   if (!opts.rootComponent) {
-    throw new Error(`single-spa-preact must be passed opts.rootComponent`);
+    throw new Error(`single-spa-solid must be passed opts.rootComponent`);
   }
 
   return {
@@ -32,39 +32,39 @@ export default function singleSpaPreact(userOpts) {
   };
 }
 
-function bootstrap(opts) {
+function bootstrap(opts:any) {
   return Promise.resolve();
 }
 
-function mount(opts, props) {
-  return new Promise((resolve, reject) => {
+function mount(opts:any, props:any) {
+  return new Promise<void>((resolve, reject) => {
     const domElementGetter = chooseDomElementGetter(opts, props);
 
     if (typeof domElementGetter !== "function") {
       throw new Error(
-        `single-spa-preact: the domElementGetter for preact application '${
-          props.appName || props.name
-        }' is not a function`
+          `single-spa-solid: the domElementGetter for solid application '${
+              props.appName || props.name
+          }' is not a function`
       );
     }
 
-    opts.renderedNode = opts.preact.render(
-      opts.preact.h(opts.rootComponent, props, null),
-      getRootDomEl(domElementGetter, props)
+    opts.renderedNode = opts.solid.render(
+        () => opts.rootComponent(props),
+        getRootDomEl(domElementGetter, props)
     );
 
     resolve();
   });
 }
 
-function unmount(opts, props) {
-  return new Promise((resolve, reject) => {
+function unmount(opts:any, props:any) {
+  return new Promise<void>((resolve, reject) => {
     const domElementGetter = chooseDomElementGetter(opts, props);
 
-    opts.preact.render(
-      "", // see https://github.com/developit/preact/issues/53
-      getRootDomEl(domElementGetter, opts),
-      opts.renderedNode
+    opts.solid.render(
+        () => null, // equivalent to empty component
+        getRootDomEl(domElementGetter, opts),
+        opts.renderedNode
     );
 
     delete opts.renderedNode;
@@ -73,19 +73,19 @@ function unmount(opts, props) {
   });
 }
 
-function getRootDomEl(domElementGetter, props) {
+function getRootDomEl(domElementGetter:any, props:any) {
   const el = domElementGetter(props);
 
   if (!el) {
     throw new Error(
-      `single-spa-preact: domElementGetter function did not return a valid dom element`
+        `single-spa-solid: domElementGetter function did not return a valid dom element`
     );
   }
 
   return el;
 }
 
-function chooseDomElementGetter(opts, props) {
+function chooseDomElementGetter(opts:any, props:any) {
   if (props.domElement) {
     return () => props.domElement;
   } else if (props.domElementGetter) {
@@ -97,11 +97,11 @@ function chooseDomElementGetter(opts, props) {
   }
 }
 
-function defaultDomElementGetter(props) {
+function defaultDomElementGetter(props:any) {
   const appName = props.appName || props.name;
   if (!appName) {
     throw Error(
-      `single-spa-preact was not given an application name as a prop, so it can't make a unique dom element container for the preact application`
+        `single-spa-solid was not given an application name as a prop, so it can't make a unique dom element container for the solid application`
     );
   }
   const htmlId = `single-spa-application:${appName}`;
