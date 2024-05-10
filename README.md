@@ -1,5 +1,7 @@
 # single-spa-solid (inspired by single-spa-preact)
 
+https://www.npmjs.com/package/@nathanld/single-spa-solid
+
 Generic lifecycle hooks for Solid applications that are registered as [applications](https://github.com/single-spa/single-spa/blob/master/docs/applications.md#registered-applications) of [single-spa](https://github.com/single-spa/single-spa).
 
 [Full documentation for Preact](https://single-spa.js.org/docs/ecosystem-preact.html)
