@@ -1,5 +1,5 @@
 {
-  "name": "@nduartech/single-spa-solid",
+  "name": "@nathanld/single-spa-solid",
   "version": "0.0.1",
   "description": "A single spa plugin for SolidJS apps",
   "main": "dist/single-spa-solid.js",
