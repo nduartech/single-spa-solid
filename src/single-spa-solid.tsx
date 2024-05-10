@@ -7,7 +7,7 @@ const defaultOpts = {
   domElementGetter: null,
 };
 
-export default function singleSpaSolid(userOpts:any) {
+export default function singleSpaSolid(userOpts: any) {
   if (typeof userOpts !== "object") {
     throw new Error(`single-spa-solid requires a configuration object`);
   }
@@ -32,39 +32,39 @@ export default function singleSpaSolid(userOpts:any) {
   };
 }
 
-function bootstrap(opts:any) {
+function bootstrap(opts: any) {
   return Promise.resolve();
 }
 
-function mount(opts:any, props:any) {
+function mount(opts: any, props: any) {
   return new Promise<void>((resolve, reject) => {
     const domElementGetter = chooseDomElementGetter(opts, props);
 
     if (typeof domElementGetter !== "function") {
       throw new Error(
-          `single-spa-solid: the domElementGetter for solid application '${
-              props.appName || props.name
-          }' is not a function`
+        `single-spa-solid: the domElementGetter for solid application '${
+          props.appName || props.name
+        }' is not a function`
       );
     }
 
     opts.renderedNode = opts.solid.render(
-        () => opts.rootComponent(props),
-        getRootDomEl(domElementGetter, props)
+      () => opts.rootComponent(props),
+      getRootDomEl(domElementGetter, props)
     );
 
     resolve();
   });
 }
 
-function unmount(opts:any, props:any) {
+function unmount(opts: any, props: any) {
   return new Promise<void>((resolve, reject) => {
     const domElementGetter = chooseDomElementGetter(opts, props);
 
     opts.solid.render(
-        () => null, // equivalent to empty component
-        getRootDomEl(domElementGetter, opts),
-        opts.renderedNode
+      () => null, // equivalent to empty component
+      getRootDomEl(domElementGetter, opts),
+      opts.renderedNode
     );
 
     delete opts.renderedNode;
@@ -73,19 +73,19 @@ function unmount(opts:any, props:any) {
   });
 }
 
-function getRootDomEl(domElementGetter:any, props:any) {
+function getRootDomEl(domElementGetter: any, props: any) {
   const el = domElementGetter(props);
 
   if (!el) {
     throw new Error(
-        `single-spa-solid: domElementGetter function did not return a valid dom element`
+      `single-spa-solid: domElementGetter function did not return a valid dom element`
     );
   }
 
   return el;
 }
 
-function chooseDomElementGetter(opts:any, props:any) {
+function chooseDomElementGetter(opts: any, props: any) {
   if (props.domElement) {
     return () => props.domElement;
   } else if (props.domElementGetter) {
@@ -97,11 +97,11 @@ function chooseDomElementGetter(opts:any, props:any) {
   }
 }
 
-function defaultDomElementGetter(props:any) {
+function defaultDomElementGetter(props: any) {
   const appName = props.appName || props.name;
   if (!appName) {
     throw Error(
-        `single-spa-solid was not given an application name as a prop, so it can't make a unique dom element container for the solid application`
+      `single-spa-solid was not given an application name as a prop, so it can't make a unique dom element container for the solid application`
     );
   }
   const htmlId = `single-spa-application:${appName}`;

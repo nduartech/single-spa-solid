@@ -5,6 +5,7 @@ Generic lifecycle hooks for Solid applications that are registered as [applicati
 [Full documentation for Preact](https://single-spa.js.org/docs/ecosystem-preact.html)
 
 Instead of:
+
 ```
 import preact from "preact";
 import rootComponent from "./path-to-root-component.js";
@@ -22,6 +23,7 @@ export const unmount = preactLifecycles.unmount;
 ```
 
 do something like:
+
 ```
 import App from "./App";
 import { render } from 'solid-js/web';

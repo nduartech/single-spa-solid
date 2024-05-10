@@ -2,21 +2,13 @@
   "name": "@nduartech/single-spa-solid",
   "version": "0.0.1",
   "description": "A single spa plugin for SolidJS apps",
-  "main": "src/single-spa-solid.js",
+  "main": "src/single-spa-solid.tsx",
   "scripts": {
-    "prepublishOnly": "yarn build",
-    "lint": "eslint src",
-    "format": "prettier --write .",
-    "build": "rimraf lib && babel src --out-dir lib --source-maps"
+    "build": "tsc src/single-spa-solid.tsx --outDir dist"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nduartech/single-spa-solid.git"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged && yarn lint"
-    }
   },
   "keywords": [
     "single",
@@ -25,10 +17,9 @@
     "spa",
     "multi",
     "one",
-    "preact"
+    "solid-js"
   ],
   "files": [
-    "lib",
     "src"
   ],
   "author": "Nathan Duarte",
@@ -38,16 +29,10 @@
   },
   "homepage": "https://github.com/nduartech/single-spa-solid#readme",
   "devDependencies": {
-    "@babel/cli": "^7.10.5",
-    "@babel/core": "^7.11.1",
-    "@babel/eslint-parser": "^7.11.3",
-    "@babel/preset-env": "^7.11.0",
-    "eslint": "^7.7.0",
-    "eslint-config-important-stuff": "^1.1.0",
-    "eslint-plugin-prettier": "^3.1.4",
-    "husky": "^4.2.5",
-    "prettier": "^2.0.5",
-    "pretty-quick": "^2.0.1",
-    "rimraf": "^3.0.2"
+    "solid-js": "^1.6.10",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@types/node": "^20.12.11"
   }
 }

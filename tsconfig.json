@@ -1,15 +1,14 @@
 {
   "compilerOptions": {
-    "strict": true,
-    "target": "ESNext",
-    "module": "ESNext",
+    "emitDeclarationOnly": true,
+    "declaration": true,
+    "target": "esnext",
+    "newLine": "LF",
     "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
+    "strict": true,
     "jsx": "preserve",
-    "jsxImportSource": "solid-js",
-    "types": ["vite/client"],
-    "noEmit": true,
-    "isolatedModules": true,
+    // Allows TS to see the Vitest globals
+    "types": ["vitest/globals"]
   },
+  "exclude": ["node_modules"]
 }
