@@ -1,6 +1,6 @@
 {
   "name": "@nduartech/single-spa-solid",
-  "version": "1.1.0",
+  "version": "0.0.1",
   "description": "A single spa plugin for SolidJS apps",
   "main": "src/single-spa-solid.js",
   "scripts": {
