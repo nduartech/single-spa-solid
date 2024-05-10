@@ -2,7 +2,7 @@
   "name": "@nduartech/single-spa-solid",
   "version": "0.0.1",
   "description": "A single spa plugin for SolidJS apps",
-  "main": "src/single-spa-solid.tsx",
+  "main": "dist/single-spa-solid.js",
   "scripts": {
     "build": "tsc src/single-spa-solid.tsx --outDir dist"
   },
