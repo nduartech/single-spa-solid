@@ -1,5 +1,5 @@
 {
-  "name": "single-spa-preact",
+  "name": "@nduartech/single-spa-solid",
   "version": "1.1.0",
   "description": "A single spa plugin for SolidJS apps",
   "main": "src/single-spa-solid.js",
