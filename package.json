@@ -1,8 +1,8 @@
 {
   "name": "@nathanld/single-spa-solid",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "A single spa plugin for SolidJS apps",
-  "main": "lib/single-spa-solid.js",
+  "main": "lib",
   "scripts": {
     "prepublishOnly": "yarn build",
     "build": "rimraf lib && babel src --out-dir lib --source-maps"
