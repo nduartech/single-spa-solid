@@ -29,12 +29,12 @@ do something like:
 ```
 import App from "./App";
 import { render } from 'solid-js/web';
-import singleSpaSolid from "./single-spa-solid";
+import singleSpaSolid from '@nathanld/single-spa-solid';
 
 const solidLifecycles = singleSpaSolid({
-solid: {render: render},
-rootComponent: App,
-domElementGetter: () => document.getElementById('root')
+    solid: {render: render},
+    rootComponent: App,
+    domElementGetter: () => document.getElementById('root')
 });
 
 
