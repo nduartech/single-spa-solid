@@ -1,11 +1,12 @@
 {
   "name": "@nathanld/single-spa-solid",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "A single spa plugin for SolidJS apps",
-  "main": "lib",
+  "main": "compiled",
+  "module": "compiled/single-spa-solid.js",
   "scripts": {
     "prepublishOnly": "yarn build",
-    "build": "rimraf lib && babel src --out-dir lib --source-maps"
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -21,8 +22,10 @@
     "solid-js"
   ],
   "files": [
-    "lib"
+    "compiled",
+    "types"
   ],
+  "types": "types/single-spa-solid.d.ts",
   "author": "Nathan Duarte",
   "license": "MIT",
   "bugs": {

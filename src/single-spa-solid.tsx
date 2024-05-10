@@ -7,7 +7,7 @@ const defaultOpts = {
   domElementGetter: null,
 };
 
-export default function singleSpaSolid(userOpts: any) {
+export default function singleSpaSolid(userOpts) {
   if (typeof userOpts !== "object") {
     throw new Error(`single-spa-solid requires a configuration object`);
   }
@@ -32,12 +32,12 @@ export default function singleSpaSolid(userOpts: any) {
   };
 }
 
-function bootstrap(opts: any) {
+function bootstrap(opts) {
   return Promise.resolve();
 }
 
-function mount(opts: any, props: any) {
-  return new Promise<void>((resolve, reject) => {
+function mount(opts, props) {
+  return new Promise((resolve, reject) => {
     const domElementGetter = chooseDomElementGetter(opts, props);
 
     if (typeof domElementGetter !== "function") {
@@ -57,8 +57,8 @@ function mount(opts: any, props: any) {
   });
 }
 
-function unmount(opts: any, props: any) {
-  return new Promise<void>((resolve, reject) => {
+function unmount(opts, props) {
+  return new Promise((resolve, reject) => {
     const domElementGetter = chooseDomElementGetter(opts, props);
 
     opts.solid.render(
@@ -73,7 +73,7 @@ function unmount(opts: any, props: any) {
   });
 }
 
-function getRootDomEl(domElementGetter: any, props: any) {
+function getRootDomEl(domElementGetter, props) {
   const el = domElementGetter(props);
 
   if (!el) {
@@ -85,7 +85,7 @@ function getRootDomEl(domElementGetter: any, props: any) {
   return el;
 }
 
-function chooseDomElementGetter(opts: any, props: any) {
+function chooseDomElementGetter(opts, props) {
   if (props.domElement) {
     return () => props.domElement;
   } else if (props.domElementGetter) {
@@ -97,7 +97,7 @@ function chooseDomElementGetter(opts: any, props: any) {
   }
 }
 
-function defaultDomElementGetter(props: any) {
+function defaultDomElementGetter(props) {
   const appName = props.appName || props.name;
   if (!appName) {
     throw Error(
