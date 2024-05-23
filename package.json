@@ -1,6 +1,6 @@
 {
   "name": "@nathanld/single-spa-solid",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "A single spa plugin for SolidJS apps",
   "main": "compiled",
   "module": "compiled/single-spa-solid.js",
